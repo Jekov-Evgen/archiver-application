@@ -2,6 +2,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton, QFileDialog, QMessageBox
 from GUI.style.style_Qt import CONST_MAIN_WINDOW
+from Logics.archiving import zip_arh
 
 def pop_up_window(title : str, text : str):
     window = QMessageBox()
@@ -23,6 +24,7 @@ class MainWindow(QMainWindow):
         
         greetings = QLabel(text="Вам надо выбрать файлы для архивации")
         file_selection = QPushButton(text="Выбрать файлы")
+        file_selection.clicked.connect(self.dialog_box)
         
         control_UI.addWidget(greetings, alignment=Qt.AlignmentFlag.AlignCenter)
         control_UI.addWidget(file_selection)
@@ -38,4 +40,9 @@ class MainWindow(QMainWindow):
         except:
             pop_up_window("Ошибка", "Произошла ошибка при поучении пути файлов")
         
-        
+        try:
+            print(file_path)
+            zip_arh(file_path)
+            pop_up_window("Успех", "ваши файлы находяться в архиве")
+        except:
+            pop_up_window("Ошибка", "Произошла ошибка при архивации")
