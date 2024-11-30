@@ -41,7 +41,6 @@ class MainWindow(QMainWindow):
             pop_up_window("Ошибка", "Произошла ошибка при поучении пути файлов")
         
         try:
-            print(file_path)
             zip_arh(file_path)
             pop_up_window("Успех", "ваши файлы находяться в архиве")
         except:

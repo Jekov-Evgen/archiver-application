@@ -2,9 +2,9 @@ import zipfile
 import os
 
 def zip_arh(list_file : list[str]):
-    homeDir = os.path.expanduser('~')
+    path = list_file[0]
     
-    for i in range(len(list_file) - 1):
+    for i in range(len(path)):
         
         with zipfile.ZipFile("arh.zip", mode='a') as ah:
-            ah.write(list_file[i][0])
+            ah.write(path[i])
